@@ -13,7 +13,13 @@
       <vcs-entry-ref root-id="Jenkins_HttpsGithubComTiger66639jenkinsGitRefsHeadsMaster" />
     </vcs-settings>
     <requirements />
-    <build-triggers />
+    <build-triggers>
+      <build-trigger id="retryBuildTrigger" type="retryBuildTrigger">
+        <parameters>
+          <param name="enqueueTimeout" value="60" />
+        </parameters>
+      </build-trigger>
+    </build-triggers>
     <build-extensions>
       <extension id="BUILD_EXT_4" type="VcsLabeling">
         <parameters>
