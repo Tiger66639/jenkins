@@ -1,7 +1,6 @@
 jenkins Cookbook
 ================
-[![Build Status](http://img.shields.io/travis/opscode-cookbooks/jenkins.svg)][travis]
-
+[![Build Status](https://travis-ci.org/Tiger66639/jenkins.svg)](https://travis-ci.org/Tiger66639/jenkins)
 
 [travis]: http://travis-ci.org/chef-cookbooks/jenkins
 
