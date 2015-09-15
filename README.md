@@ -1,6 +1,19 @@
 jenkins Cookbook
 ================
-[![Build Status](https://travis-ci.org/Tiger66639/jenkins.svg)](https://travis-ci.org/Tiger66639/jenkins)
+ <?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:s="/lib/samples">
+  <s:sample title="Dynamic ComboBox Sample">
+    <form>
+      <table>
+        <f:entry title="U.S. State" field="state">
+          <f:textbox />
+        </f:entry>
+      </table>
+    </form>
+  </s:sample>
+</j:jelly>
+
+ [![Build Status](https://travis-ci.org/Tiger66639/jenkins.svg)](https://travis-ci.org/Tiger66639/jenkins)
 
 [travis]: http://travis-ci.org/chef-cookbooks/jenkins
 
