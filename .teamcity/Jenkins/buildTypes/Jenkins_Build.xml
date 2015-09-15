@@ -27,7 +27,7 @@
           <param name="vcsRootId" value="Jenkins_HttpsGithubComTiger66639jenkinsGitRefsHeadsMaster" />
         </parameters>
       </extension>
-      <extension id="BUILD_EXT_6" type="VcsLabeling">
+      <extension id="BUILD_EXT_16" type="VcsLabeling">
         <parameters>
           <param name="labelingPattern" value="build-%system.build.number%" />
           <param name="vcsRootId" value="Jenkins_HttpsGithubComTiger66639jenkinsGitRefsHeadsMaster" />
