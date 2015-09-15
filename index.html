@@ -1,37 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
     <title>Jenkins by Tiger66639</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
-
   <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/Tiger66639/jenkins">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/Tiger66639/jenkins/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/Tiger66639/jenkins/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
 
-    <header>
-      <div class="container">
-        <h1>Jenkins</h1>
-        <h2>Development repository for Jenkins Chef cookbook</h2>
+    <div class="wrapper">
 
-        <section id="downloads">
-          <a href="https://github.com/Tiger66639/jenkins/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/Tiger66639/jenkins/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/Tiger66639/jenkins" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
+      <section>
+        <div id="title">
+          <h1>Jenkins</h1>
+          <p>Development repository for Jenkins Chef cookbook</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/Tiger66639">Tiger66639</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
 
-    <div class="container">
-      <section id="main_content">
         <h1>
 <a id="jenkins-cookbook" class="anchor" href="#jenkins-cookbook" aria-hidden="true"><span class="octicon octicon-link"></span></a>jenkins Cookbook</h1>
 
-<p><a href="http://travis-ci.org/chef-cookbooks/jenkins"><img src="http://img.shields.io/travis/opscode-cookbooks/jenkins.svg" alt="Build Status"></a></p>
+<p><a href="https://travis-ci.org/Tiger66639/jenkins"><img src="https://travis-ci.org/Tiger66639/jenkins.svg" alt="Build Status"></a></p>
 
 <p>Installs and configures Jenkins CI master &amp; node slaves. Resource providers to support automation via jenkins-cli, including job create/update.</p>
 
@@ -88,15 +98,15 @@
 <pre><code>:execute
 </code></pre>
 
-<div class="highlight highlight-ruby"><pre>jenkins_command <span class="pl-s"><span class="pl-pds">'</span>safe-restart<span class="pl-pds">'</span></span></pre></div>
+<div class="highlight highlight-source-ruby"><pre>jenkins_command <span class="pl-s"><span class="pl-pds">'</span>safe-restart<span class="pl-pds">'</span></span></pre></div>
 
 <p>To reload the configuration from disk:</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_command <span class="pl-s"><span class="pl-pds">'</span>reload-configuration<span class="pl-pds">'</span></span></pre></div>
+<div class="highlight highlight-source-ruby"><pre>jenkins_command <span class="pl-s"><span class="pl-pds">'</span>reload-configuration<span class="pl-pds">'</span></span></pre></div>
 
 <p>To prevent Jenkins from starting any new builds (in preparation for a shutdown):</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_command <span class="pl-s"><span class="pl-pds">'</span>quiet-down<span class="pl-pds">'</span></span></pre></div>
+<div class="highlight highlight-source-ruby"><pre>jenkins_command <span class="pl-s"><span class="pl-pds">'</span>quiet-down<span class="pl-pds">'</span></span></pre></div>
 
 <p><strong>NOTE</strong> You must add your own <code>not_if</code>/<code>only_if</code> guards to the <code>jenkins_command</code> to prevent duplicate commands from executing. Just like Chef's core <code>execute</code> resource, the <code>jenkins_command</code> resource has no way of being idempotent.</p>
 
@@ -105,9 +115,9 @@
 
 <p>This resource executes arbitrary Java or Groovy commands against the Jenkins master. By the nature of this command, it is <strong>not</strong> idempotent.</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_script <span class="pl-s"><span class="pl-pds">'</span>println("This is Groovy code!")<span class="pl-pds">'</span></span></pre></div>
+<div class="highlight highlight-source-ruby"><pre>jenkins_script <span class="pl-s"><span class="pl-pds">'</span>println("This is Groovy code!")<span class="pl-pds">'</span></span></pre></div>
 
-<div class="highlight highlight-ruby"><pre>jenkins_script <span class="pl-s"><span class="pl-pds">'</span>add_authentication<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_script <span class="pl-s"><span class="pl-pds">'</span>add_authentication<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   command <span class="pl-s"><span class="pl-pds">&lt;&lt;-EOH</span>.gsub(/^ {4}/, '')</span>
 <span class="pl-s">    import jenkins.model.*</span>
 <span class="pl-s">    import hudson.security.*</span>
@@ -164,7 +174,7 @@ To generate a unique ID, you can use linux command <code>uuidgen</code>.</p>
 
 <p>The <code>:create</code> action idempotently creates a set of Jenkins credentials on the current node. The <code>username</code> attribute (also the name attribute) corresponds to the username of the credentials on the target node. You may also specify a <code>description</code> which is useful in credential identification.</p>
 
-<div class="highlight highlight-ruby"><pre><span class="pl-c"># Create password credentials</span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c"># Create password credentials</span>
 jenkins_password_credentials <span class="pl-s"><span class="pl-pds">'</span>wcoyote<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   id <span class="pl-s"><span class="pl-pds">'</span>f2361e6b-b8e0-4b2b-890b-82e85bc1a59f<span class="pl-pds">'</span></span>
   description <span class="pl-s"><span class="pl-pds">'</span>Wile E Coyote<span class="pl-pds">'</span></span>
@@ -187,7 +197,7 @@ jenkins_private_key_credentials <span class="pl-s"><span class="pl-pds">'</span>
 
 <p>The <code>:delete</code> action idempotently removes a set of Jenkins credentials from the system. You can use the base <code>jenkins_credentials</code> resource or any of its children to perform the deletion.</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_credentials <span class="pl-s"><span class="pl-pds">'</span>wcoyote<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_credentials <span class="pl-s"><span class="pl-pds">'</span>wcoyote<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   action <span class="pl-c1">:delete</span>
 <span class="pl-k">end</span>
 
@@ -218,7 +228,7 @@ jenkins_private_key_credentials <span class="pl-s"><span class="pl-pds">'</span>
 
 <p>The <code>:create</code> action requires a Jenkins job <code>config.xml</code>. This config file must exist on the target node and contain a valid Jenkins job configuration file. Because the Jenkins CLI actually reads and generates its own copy of this file, <strong>do NOT</strong> write this configuration inside of the Jenkins job. We recommend putting them in Chef's file cache path:</p>
 
-<div class="highlight highlight-ruby"><pre>xml <span class="pl-k">=</span> <span class="pl-c1">File</span>.join(<span class="pl-c1">Chef</span>::<span class="pl-c1">Config</span>[<span class="pl-c1">:file_cache_path</span>], <span class="pl-s"><span class="pl-pds">'</span>bacon-config.xml<span class="pl-pds">'</span></span>)
+<div class="highlight highlight-source-ruby"><pre>xml <span class="pl-k">=</span> <span class="pl-c1">File</span>.join(<span class="pl-c1">Chef</span>::<span class="pl-c1">Config</span>[<span class="pl-c1">:file_cache_path</span>], <span class="pl-s"><span class="pl-pds">'</span>bacon-config.xml<span class="pl-pds">'</span></span>)
 
 <span class="pl-c"># You could also use a `cookbook_file` or pure `file` resource to generate</span>
 <span class="pl-c"># content at this path.</span>
@@ -231,19 +241,19 @@ jenkins_job <span class="pl-s"><span class="pl-pds">'</span>bacon<span class="pl
   config xml
 <span class="pl-k">end</span></pre></div>
 
-<div class="highlight highlight-ruby"><pre>jenkins_job <span class="pl-s"><span class="pl-pds">'</span>bacon<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_job <span class="pl-s"><span class="pl-pds">'</span>bacon<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   action <span class="pl-c1">:delete</span>
 <span class="pl-k">end</span></pre></div>
 
 <p>You can disable a Jenkins job by specifying the <code>:disable</code> option. This will disable an existing job, if and only if that job exists and is enabled. If the job does not exist, an exception is raised.</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_job <span class="pl-s"><span class="pl-pds">'</span>bacon<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_job <span class="pl-s"><span class="pl-pds">'</span>bacon<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   action <span class="pl-c1">:disable</span>
 <span class="pl-k">end</span></pre></div>
 
 <p>You can enable a Jenkins job by specifying the <code>:enable</code> option. This will enable an existing job, if and only if that job exists and is disabled. If the job does not exist, an exception is raised.</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_job <span class="pl-s"><span class="pl-pds">'</span>bacon<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_job <span class="pl-s"><span class="pl-pds">'</span>bacon<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   action <span class="pl-c1">:enable</span>
 <span class="pl-k">end</span></pre></div>
 
@@ -264,7 +274,7 @@ jenkins_job <span class="pl-s"><span class="pl-pds">'</span>bacon<span class="pl
 
 <p>The <code>:install</code> action idempotently installs a Jenkins plugin on the current node. The name attribute corresponds to the name of the plugin on the Jenkins Update Center. You can also specify a particular version of the plugin to install. Finally, you can specify a full source URL or local path (on the node) to a plugin.</p>
 
-<div class="highlight highlight-ruby"><pre><span class="pl-c"># Install the latest version of the greenballs plugin</span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c"># Install the latest version of the greenballs plugin</span>
 jenkins_plugin <span class="pl-s"><span class="pl-pds">'</span>greenballs<span class="pl-pds">'</span></span>
 
 <span class="pl-c"># Install version 1.3 of the greenballs plugin</span>
@@ -286,37 +296,37 @@ jenkins_plugin <span class="pl-s"><span class="pl-pds">'</span>github-oauth<span
 
 <p>Package installation method:</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_plugin <span class="pl-s"><span class="pl-pds">'</span>a_complicated_plugin<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_plugin <span class="pl-s"><span class="pl-pds">'</span>a_complicated_plugin<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   notifies <span class="pl-c1">:restart</span>, <span class="pl-s"><span class="pl-pds">'</span>service[jenkins]<span class="pl-pds">'</span></span>, <span class="pl-c1">:immediately</span>
 <span class="pl-k">end</span></pre></div>
 
 <p>War installation method:</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_plugin <span class="pl-s"><span class="pl-pds">'</span>a_complicated_plugin<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_plugin <span class="pl-s"><span class="pl-pds">'</span>a_complicated_plugin<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   notifies <span class="pl-c1">:restart</span>, <span class="pl-s"><span class="pl-pds">'</span>runit_service[jenkins]<span class="pl-pds">'</span></span>, <span class="pl-c1">:immediately</span>
 <span class="pl-k">end</span></pre></div>
 
 <p>For advanced users, this resource exposes an <code>options</code> attribute that will be passed to the installation command. For more information on the possible values of these options, pleaes consult the documentation for your Jenkins installation.</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_plugin <span class="pl-s"><span class="pl-pds">'</span>a_really_complicated_plugin<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_plugin <span class="pl-s"><span class="pl-pds">'</span>a_really_complicated_plugin<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   options <span class="pl-s"><span class="pl-pds">'</span>-deploy -cold<span class="pl-pds">'</span></span>
 <span class="pl-k">end</span></pre></div>
 
 <p>The <code>:uninstall</code> action removes (uninstalls) a Jenkins plugin idempotently on the current node.</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_plugin <span class="pl-s"><span class="pl-pds">'</span>greenballs<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_plugin <span class="pl-s"><span class="pl-pds">'</span>greenballs<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   action <span class="pl-c1">:uninstall</span>
 <span class="pl-k">end</span></pre></div>
 
 <p>The <code>:enable</code> action enables a plugin. If the plugin is not installed, an exception is raised. If the plugin is already enabled, no action is taken.</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_plugin <span class="pl-s"><span class="pl-pds">'</span>greenballs<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_plugin <span class="pl-s"><span class="pl-pds">'</span>greenballs<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   action <span class="pl-c1">:enable</span>
 <span class="pl-k">end</span></pre></div>
 
 <p>The <code>:disable</code> action disables a plugin. If the plugin is not installed, an exception is raised. If the plugin is already disabled, no action is taken.</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_plugin <span class="pl-s"><span class="pl-pds">'</span>greenballs<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_plugin <span class="pl-s"><span class="pl-pds">'</span>greenballs<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   action <span class="pl-c1">:disable</span>
 <span class="pl-k">end</span></pre></div>
 
@@ -350,7 +360,7 @@ jenkins_plugin <span class="pl-s"><span class="pl-pds">'</span>github-oauth<span
 
 <p>The <code>:create</code> action idempotently creates a Jenkins slave on the master. The name attribute corresponds to the name of the slave (which is also used to uniquely identify the slave).</p>
 
-<div class="highlight highlight-ruby"><pre><span class="pl-c"># Create a basic JNLP slave</span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c"># Create a basic JNLP slave</span>
 jenkins_jnlp_slave <span class="pl-s"><span class="pl-pds">'</span>builder<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   description <span class="pl-s"><span class="pl-pds">'</span>A generic slave builder<span class="pl-pds">'</span></span>
   remote_fs   <span class="pl-s"><span class="pl-pds">'</span>/home/jenkins<span class="pl-pds">'</span></span>
@@ -401,7 +411,7 @@ jenkins_windows_slave <span class="pl-s"><span class="pl-pds">'</span>mywinslave
 
 <p>The <code>:delete</code> action idempotently removes a slave from the cluster. Any services used to manage the underlying slave process will also be disabled.</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_jnlp_slave <span class="pl-s"><span class="pl-pds">'</span>builder<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_jnlp_slave <span class="pl-s"><span class="pl-pds">'</span>builder<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   action <span class="pl-c1">:delete</span>
 <span class="pl-k">end</span>
 
@@ -411,7 +421,7 @@ jenkins_ssh_slave <span class="pl-s"><span class="pl-pds">'</span>executor<span 
 
 <p>The <code>:connect</code> action idempotently forces the master to reconnect to the specified slave. You can use the base <code>jenkins_slave</code> resource or any of its children to perform the connection.</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_slave <span class="pl-s"><span class="pl-pds">'</span>builder<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_slave <span class="pl-s"><span class="pl-pds">'</span>builder<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   action <span class="pl-c1">:connect</span>
 <span class="pl-k">end</span>
 
@@ -421,7 +431,7 @@ jenkins_ssh_slave <span class="pl-s"><span class="pl-pds">'</span>executor<span 
 
 <p>The <code>:disconnect</code> action idempotently forces the master to disconnect the specified slave. You can use the base <code>jenkins_slave</code> resource or any of its children to perform the connection.</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_slave <span class="pl-s"><span class="pl-pds">'</span>builder<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_slave <span class="pl-s"><span class="pl-pds">'</span>builder<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   action <span class="pl-c1">:disconnect</span>
 <span class="pl-k">end</span>
 
@@ -431,7 +441,7 @@ jenkins_ssh_slave <span class="pl-s"><span class="pl-pds">'</span>executor<span 
 
 <p>The <code>:online</code> action idempotently brings a slave back online. You can use the base <code>jenkins_slave</code> resource or any of its children to bring the slave online.</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_slave <span class="pl-s"><span class="pl-pds">'</span>builder<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_slave <span class="pl-s"><span class="pl-pds">'</span>builder<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   action <span class="pl-c1">:online</span>
 <span class="pl-k">end</span>
 
@@ -441,7 +451,7 @@ jenkins_ssh_slave <span class="pl-s"><span class="pl-pds">'</span>executor<span 
 
 <p>The <code>:offline</code> action idempotently takes a slave temporarily offline. An optional reason for going offline can be provided with the <code>offline_reason</code> attribute. You can use the base <code>jenkins_slave</code> resource or any of its children to take a slave offline.</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_slave <span class="pl-s"><span class="pl-pds">'</span>builder<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_slave <span class="pl-s"><span class="pl-pds">'</span>builder<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   action <span class="pl-c1">:offline</span>
 <span class="pl-k">end</span>
 
@@ -471,7 +481,7 @@ jenkins_ssh_slave <span class="pl-s"><span class="pl-pds">'</span>executor<span 
 
 <p>The <code>:create</code> action idempotently creates a Jenkins user on the current node. The id attribute corresponds to the username of the id of the user on the target node. You may also specify a name, email, and list of SSH keys.</p>
 
-<div class="highlight highlight-ruby"><pre><span class="pl-c"># Create a Jenkins user</span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c"># Create a Jenkins user</span>
 jenkins_user <span class="pl-s"><span class="pl-pds">'</span>grumpy<span class="pl-pds">'</span></span>
 
 <span class="pl-c"># Create a Jenkins user with specific attributes</span>
@@ -483,7 +493,7 @@ jenkins_user <span class="pl-s"><span class="pl-pds">'</span>grumpy<span class="
 
 <p>The <code>:delete</code> action removes a Jenkins user from the system.</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_user <span class="pl-s"><span class="pl-pds">'</span>grumpy<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
+<div class="highlight highlight-source-ruby"><pre>jenkins_user <span class="pl-s"><span class="pl-pds">'</span>grumpy<span class="pl-pds">'</span></span> <span class="pl-k">do</span>
   action <span class="pl-c1">:delete</span>
 <span class="pl-k">end</span></pre></div>
 
@@ -495,11 +505,11 @@ jenkins_user <span class="pl-s"><span class="pl-pds">'</span>grumpy<span class="
 
 <p>If you use or plan to use authentication for your Jenkins cluster (which we highly recommend), you will need to set a special value in the <code>run_context</code>:</p>
 
-<div class="highlight highlight-ruby"><pre>node.run_state[<span class="pl-c1">:jenkins_private_key</span>]</pre></div>
+<div class="highlight highlight-source-ruby"><pre>node.run_state[<span class="pl-c1">:jenkins_private_key</span>]</pre></div>
 
 <p>The underlying executor class (which all HWRPs use) intelligently adds authentication information to the Jenkins CLI commands if this value is set. The method used to generate and populate this key-pair is left to the user:</p>
 
-<div class="highlight highlight-ruby"><pre><span class="pl-c"># Using search</span>
+<div class="highlight highlight-source-ruby"><pre><span class="pl-c"># Using search</span>
 master <span class="pl-k">=</span> search(<span class="pl-c1">:node</span>, <span class="pl-s"><span class="pl-pds">'</span>fqdn:master.ci.example.com<span class="pl-pds">'</span></span>).first
 node.run_state[<span class="pl-c1">:jenkins_private_key</span>] <span class="pl-k">=</span> master[<span class="pl-s"><span class="pl-pds">'</span>jenkins<span class="pl-pds">'</span></span>][<span class="pl-s"><span class="pl-pds">'</span>private_key<span class="pl-pds">'</span></span>]
 
@@ -509,7 +519,7 @@ node.run_state[<span class="pl-c1">:jenkins_private_key</span>] <span class="pl-
 
 <p>The associated public key must be set on a Jenkins user. You can use the <code>jenkins_user</code> resource to create this pairing. Here's an example that loads a keypair and assigns it appropiately:</p>
 
-<div class="highlight highlight-ruby"><pre>jenkins_keys <span class="pl-k">=</span> encrypted_data_bag_item(<span class="pl-s"><span class="pl-pds">'</span>jenkins<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>keys<span class="pl-pds">'</span></span>)
+<div class="highlight highlight-source-ruby"><pre>jenkins_keys <span class="pl-k">=</span> encrypted_data_bag_item(<span class="pl-s"><span class="pl-pds">'</span>jenkins<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>keys<span class="pl-pds">'</span></span>)
 
 <span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>openssl<span class="pl-pds">'</span></span>
 <span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>net/ssh<span class="pl-pds">'</span></span>
@@ -531,7 +541,7 @@ node.run_state[<span class="pl-c1">:jenkins_private_key</span>] <span class="pl-
 <p>If (and <strong>only if</strong>) you have your Jenkins instance configured to use the PAM (Unix user/group database) security realm you can set the
 username and password the CLI uses via these two <code>run_context</code> values:</p>
 
-<div class="highlight highlight-ruby"><pre>node.run_state[<span class="pl-c1">:jenkins_username</span>]
+<div class="highlight highlight-source-ruby"><pre>node.run_state[<span class="pl-c1">:jenkins_username</span>]
 node.run_state[<span class="pl-c1">:jenkins_password</span>]</pre></div>
 
 <h3>
@@ -539,11 +549,11 @@ node.run_state[<span class="pl-c1">:jenkins_password</span>]</pre></div>
 
 <p>If you need to pass through a proxy to communicate between your masters and slaves, you will need to set a special node attribute:</p>
 
-<div class="highlight highlight-ruby"><pre>node[<span class="pl-s"><span class="pl-pds">'</span>jenkins<span class="pl-pds">'</span></span>][<span class="pl-s"><span class="pl-pds">'</span>executor<span class="pl-pds">'</span></span>][<span class="pl-s"><span class="pl-pds">'</span>proxy<span class="pl-pds">'</span></span>]</pre></div>
+<div class="highlight highlight-source-ruby"><pre>node[<span class="pl-s"><span class="pl-pds">'</span>jenkins<span class="pl-pds">'</span></span>][<span class="pl-s"><span class="pl-pds">'</span>executor<span class="pl-pds">'</span></span>][<span class="pl-s"><span class="pl-pds">'</span>proxy<span class="pl-pds">'</span></span>]</pre></div>
 
 <p>The underlying executor class (which all HWRPs use) intelligently passes proxy information to the Jenkins CLI commands if this attribute is set. It should be set in the form <code>HOST:PORT</code>:</p>
 
-<div class="highlight highlight-ruby"><pre>node.set[<span class="pl-s"><span class="pl-pds">'</span>jenkins<span class="pl-pds">'</span></span>][<span class="pl-s"><span class="pl-pds">'</span>executor<span class="pl-pds">'</span></span>][<span class="pl-s"><span class="pl-pds">'</span>proxy<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>1.2.3.4:5678<span class="pl-pds">'</span></span></pre></div>
+<div class="highlight highlight-source-ruby"><pre>node.set[<span class="pl-s"><span class="pl-pds">'</span>jenkins<span class="pl-pds">'</span></span>][<span class="pl-s"><span class="pl-pds">'</span>executor<span class="pl-pds">'</span></span>][<span class="pl-s"><span class="pl-pds">'</span>proxy<span class="pl-pds">'</span></span>] <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>1.2.3.4:5678<span class="pl-pds">'</span></span></pre></div>
 
 <h2>
 <a id="development" class="anchor" href="#development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development</h2>
@@ -587,8 +597,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 </code></pre>
       </section>
-    </div>
 
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
 </html>
