@@ -6,7 +6,9 @@ addons:
       - chef-stable-precise
     packages:
       - chefdk
-
+addons:
+  code_climate:
+    repo_token: adf08323...
 branches:
   only:
     - master
